@@ -8,7 +8,15 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>mask-service</artifactId>
     <packaging>pom</packaging>
+
+    <modules>
+        <module>service-inland-bi</module>
+        <module>service-inland-pay</module>
+        <module>service-inland-sdk</module>
+        <module>service-oversea-bi</module>
+        <module>service-oversea-pay</module>
+        <module>service-oversea-sdk</module>
+    </modules>
 </project>
