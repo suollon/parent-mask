@@ -39,11 +39,18 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!-- 其他项目依赖 -->
+        <!-- 其他开源项目依赖 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <!-- 公司内部项目依赖 -->
+        <dependency>
+            <groupId>com.lingdong</groupId>
+            <artifactId>common-service</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
