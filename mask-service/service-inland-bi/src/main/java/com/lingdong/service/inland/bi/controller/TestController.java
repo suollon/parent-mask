@@ -1,5 +1,6 @@
 package com.lingdong.service.inland.bi.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.lingdong.common.service.inland.bi.TestClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,7 @@ public class TestController implements TestClient {
     private String userPassword;
 
     @GetMapping
+    @SentinelResource
     public String get(@RequestParam String name) {
         return "hello" + name + "===userName=" + userName + "======userPassword=" + userPassword;
     }

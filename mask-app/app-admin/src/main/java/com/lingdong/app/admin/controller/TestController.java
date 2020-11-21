@@ -15,7 +15,7 @@ public class TestController {
     private TestClient testClient;
 
     @GetMapping
-    public String get(@RequestParam String name) {
+    public String get(@RequestParam("name") String name) {
         return testClient.get(name);
     }
 
