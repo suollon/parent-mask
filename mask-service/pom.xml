@@ -7,7 +7,6 @@
         <groupId>com.lingdong</groupId>
         <artifactId>parent-mask</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>mask-service</artifactId>
     <packaging>pom</packaging>

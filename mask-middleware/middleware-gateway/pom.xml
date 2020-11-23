@@ -6,7 +6,6 @@
         <groupId>com.lingdong</groupId>
         <artifactId>mask-middleware</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>middleware-gateway</artifactId>
     <name>middleware-gateway</name>

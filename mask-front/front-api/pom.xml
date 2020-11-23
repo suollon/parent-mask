@@ -6,7 +6,6 @@
         <groupId>com.lingdong</groupId>
         <artifactId>mask-front</artifactId>
         <version>1.0.0-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>front-api</artifactId>
     <name>front-api</name>
