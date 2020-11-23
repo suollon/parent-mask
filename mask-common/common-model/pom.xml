@@ -8,9 +8,7 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.lingdong</groupId>
     <artifactId>common-model</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
     <name>common-model</name>
     <description>DTO, ENUM, CONSTANT等</description>
 
