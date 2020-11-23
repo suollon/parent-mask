@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>mask-app</module>
+        <module>mask-front</module>
         <module>mask-common</module>
         <module>mask-middleware</module>
         <module>mask-service</module>

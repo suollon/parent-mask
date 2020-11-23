@@ -8,15 +8,12 @@
         <artifactId>parent-mask</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
-    <artifactId>mask-service</artifactId>
+    <artifactId>mask-front</artifactId>
     <packaging>pom</packaging>
 
     <modules>
-        <module>service-inland-bi</module>
-        <module>service-inland-pay</module>
-        <module>service-inland-sdk</module>
-        <module>service-oversea-bi</module>
-        <module>service-oversea-pay</module>
-        <module>service-oversea-sdk</module>
+        <module>front-admin</module>
+        <module>front-api</module>
+        <module>front-app</module>
     </modules>
 </project>
