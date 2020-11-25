@@ -42,7 +42,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- 其他公司内部项目依赖 -->
+        <!-- 公司内部项目依赖 -->
         <dependency>
             <groupId>com.lingdong</groupId>
             <artifactId>common-service</artifactId>

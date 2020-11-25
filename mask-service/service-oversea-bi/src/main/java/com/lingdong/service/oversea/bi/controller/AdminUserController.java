@@ -31,6 +31,13 @@ public class AdminUserController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    //注册
+    @PostMapping("/sign-up")
+    public void signUp() {
+
+    }
+
+    //登录
     @PostMapping("/login")
     public void login(@RequestBody LoginParam param) {
         AdminUserDto userFromDatabase = this.adminUserService.selectByUsername(param.getUsername());
@@ -46,6 +53,14 @@ public class AdminUserController {
         headers.set(HttpHeaders.AUTHORIZATION, token);
         return;
     }
+
+    //退出
+    @PostMapping("/logout")
+    public void logout() {
+        // 删除缓存中的token
+        return;
+    }
+
 
     @GetMapping("/selectOne")
     public AdminUser selectOne() {

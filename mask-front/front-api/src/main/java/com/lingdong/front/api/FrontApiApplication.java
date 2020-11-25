@@ -1,13 +1,13 @@
-package com.lingdong.front.mask;
+package com.lingdong.front.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppMaskApplication {
+public class FrontApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AppMaskApplication.class, args);
+        SpringApplication.run(FrontApiApplication.class, args);
     }
 
 }

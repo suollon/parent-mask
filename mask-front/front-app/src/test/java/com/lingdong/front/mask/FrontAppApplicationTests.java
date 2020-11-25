@@ -1,10 +1,10 @@
-package com.lingdong.front.api;
+package com.lingdong.front.mask;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AppApiApplicationTests {
+class FrontAppApplicationTests {
 
     @Test
     void contextLoads() {

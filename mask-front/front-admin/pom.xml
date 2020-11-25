@@ -13,16 +13,12 @@
 
     <dependencies>
         <!-- spring boot相关依赖 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
 
         <!-- spring cloud 相关依赖 -->
 
         <!-- 其他开源项目依赖 -->
 
-        <!-- 其他公司内部项目依赖 -->
+        <!-- 公司内部项目依赖 -->
 
     </dependencies>
 </project>
