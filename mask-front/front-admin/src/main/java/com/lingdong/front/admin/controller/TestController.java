@@ -1,9 +1,9 @@
 package com.lingdong.front.admin.controller;
 
-import com.lingdong.common.model.global.ErrorEnum;
-import com.lingdong.common.model.global.LingdongException;
-import com.lingdong.common.model.global.Result;
-import com.lingdong.common.service.inland.bi.TestClient;
+import com.lingdong.common.model.global_exception.ErrorEnum;
+import com.lingdong.common.model.global_exception.LingdongException;
+import com.lingdong.common.model.global_exception.Result;
+import com.lingdong.common.service.inland_bi.TestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +19,10 @@ public class TestController {
 
     @GetMapping
     public Result<String> get(@RequestParam("name") String name) {
-        String s = testClient.get(name);
-        return Result.ok(s);
+        // String s = testClient.get(name);
+        return Result.ok(name);
     }
 
-    // ArithmeticException
     @GetMapping("/error")
     public Result<String> gete() {
         try {

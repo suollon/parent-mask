@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients(basePackages = "com.lingdong.common.service")
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = {"com.lingdong.front.admin", "com.lingdong.common.model.global"})
+@SpringBootApplication(scanBasePackages = {"com.lingdong.front.admin", "com.lingdong.common.model"})
 public class FrontAdminApplication {
 
     public static void main(String[] args) {

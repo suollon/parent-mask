@@ -65,6 +65,11 @@
             </dependency>
 
             <!-- 其他开源项目依赖 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>3.0.0</version>
+            </dependency>
 
             <!-- 公司内部项目依赖 -->
 
