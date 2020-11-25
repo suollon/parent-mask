@@ -10,8 +10,8 @@ import lombok.Setter;
 @Setter
 public class Result<T> {
 
-    private Integer code = 0;
-    private String message = "成功！";
+    private Integer code;
+    private String message;
     private T data;
     private long timestamp = System.currentTimeMillis();
 
