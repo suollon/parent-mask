@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@EnableFeignClients(basePackages = "com.lingdong.common.service")
+@EnableFeignClients(basePackages = "com.lingdong.common.model")
 @EnableDiscoveryClient
 @SpringBootApplication(scanBasePackages = {"com.lingdong.front.admin", "com.lingdong.common.model"})
 public class FrontAdminApplication {

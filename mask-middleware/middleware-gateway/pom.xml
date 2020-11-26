@@ -13,6 +13,11 @@
 
     <dependencies>
         <!-- spring cloud 相关依赖 -->
+        <!-- gateway网关 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
         <!-- nacos配置中心 -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
@@ -23,10 +28,6 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-        <!-- gateway网关 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
+
     </dependencies>
 </project>

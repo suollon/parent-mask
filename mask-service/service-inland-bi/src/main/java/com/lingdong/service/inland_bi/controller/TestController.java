@@ -1,7 +1,7 @@
 package com.lingdong.service.inland_bi.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.lingdong.common.service.inland_bi.TestClient;
+import com.lingdong.common.model.global_exception.Result;
+import com.lingdong.common.model.inland_bi.client.TestClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +17,14 @@ public class TestController implements TestClient {
     @Value("${user.name}")
     private String userName;
 
-    @NacosValue("${user.password}")
-    private String userPassword;
-
     @GetMapping
-    public String get(@RequestParam String name) {
-        return "hello" + name + "===userName=" + userName + "======userPassword=" + userPassword;
+    public Result<String> get(@RequestParam String name) {
+        String result = "hello" + name + "===userName=" + userName;
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return Result.ok(result);
     }
 }
