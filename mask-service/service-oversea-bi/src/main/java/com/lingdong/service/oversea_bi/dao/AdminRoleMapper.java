@@ -1,7 +1,7 @@
 package com.lingdong.service.oversea_bi.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.lingdong.service.oversea_bi.param.AdminRoleParam;
+import com.lingdong.common.model.oversea_bi.param.AdminRoleParam;
 import com.lingdong.service.oversea_bi.entity.AdminRole;
 import org.springframework.stereotype.Repository;
 

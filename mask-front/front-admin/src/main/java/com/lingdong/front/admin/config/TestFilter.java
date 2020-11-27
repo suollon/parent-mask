@@ -1,7 +1,7 @@
-package com.lingdong.service.oversea_bi.config;
+package com.lingdong.front.admin.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lingdong.service.oversea_bi.entity.AdminUser;
+import com.lingdong.common.model.oversea_bi.dto.AdminUserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,7 +31,7 @@ public class TestFilter  {
     // @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         try {
-            AdminUser adminUser = new ObjectMapper().readValue(request.getInputStream(), AdminUser.class);
+            AdminUserDto adminUser = new ObjectMapper().readValue(request.getInputStream(), AdminUserDto.class);
             //1，从数据库或缓存中获取用户密码及权限
             UserDetails userDetails = userDetailsService.loadUserByUsername(adminUser.getUsername());
             if (userDetails == null) {

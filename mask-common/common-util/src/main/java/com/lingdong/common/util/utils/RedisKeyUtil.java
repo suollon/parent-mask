@@ -1,4 +1,4 @@
-package com.lingdong.service.oversea_bi.config;
+package com.lingdong.common.util.utils;
 
 public class RedisKeyUtil {
 

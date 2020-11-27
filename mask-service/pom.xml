@@ -33,6 +33,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
@@ -64,8 +68,28 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <!-- redis需要的依赖 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
 
         <!-- 公司内部项目依赖 -->
+        <dependency>
+            <groupId>com.lingdong</groupId>
+            <artifactId>common-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>com.lingdong</groupId>
             <artifactId>common-model</artifactId>
@@ -73,7 +97,7 @@
         </dependency>
         <dependency>
             <groupId>com.lingdong</groupId>
-            <artifactId>common-service</artifactId>
+            <artifactId>common-util</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

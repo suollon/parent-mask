@@ -1,4 +1,4 @@
-package com.lingdong.service.oversea_bi.config;
+package com.lingdong.front.admin.config;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

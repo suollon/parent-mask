@@ -60,7 +60,7 @@
         </dependency>
         <dependency>
             <groupId>com.lingdong</groupId>
-            <artifactId>common-service</artifactId>
+            <artifactId>common-util</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

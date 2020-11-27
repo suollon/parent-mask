@@ -3,13 +3,13 @@ package com.lingdong.service.oversea_bi.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lingdong.common.model.global_exception.ErrorEnum;
 import com.lingdong.common.model.global_exception.LingdongException;
-import com.lingdong.service.oversea_bi.config.AdminUserDto;
-import com.lingdong.service.oversea_bi.config.BeanCopierUtil;
+import com.lingdong.common.model.oversea_bi.dto.AdminUserDto;
+import com.lingdong.common.model.oversea_bi.param.AdminUserSignUpParam;
+import com.lingdong.common.util.utils.BeanCopierUtil;
 import com.lingdong.service.oversea_bi.dao.AdminUserMapper;
 import com.lingdong.service.oversea_bi.dao.AdminUserRoleMapper;
 import com.lingdong.service.oversea_bi.entity.AdminUser;
 import com.lingdong.service.oversea_bi.entity.AdminUserRole;
-import com.lingdong.service.oversea_bi.param.AdminUserSignUpParam;
 import com.lingdong.service.oversea_bi.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -36,6 +36,22 @@ public class AdminUserServiceImpl implements AdminUserService {
     private AdminUserRoleMapper adminUserRoleMapper;
 
     @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        QueryWrapper<AdminUser> query = new QueryWrapper<>();
+        query.eq("username", username);
+        query.eq("status", "NORMAL");
+        AdminUser adminUser = adminUserMapper.selectOne(query);
+
+        List<String> menuList = adminUserMapper.selectMenuListByUserId(adminUser.getUserId());
+        UserDetails user = User.builder()
+                .username(adminUser.getUsername())
+                .password(adminUser.getPassword())
+                .authorities(menuList.toArray(new String[menuList.size()]))
+                .build();
+        return user;
+    }
+
+    @Override
     public void signUp(AdminUserSignUpParam param) {
         QueryWrapper<AdminUser> query = new QueryWrapper<>();
         query.eq("username", param.getUsername());
@@ -55,22 +71,6 @@ public class AdminUserServiceImpl implements AdminUserService {
                 .map(roleId -> AdminUserRole.builder().userId(adminUser.getUserId()).roleId(roleId).build())
                 .collect(Collectors.toList());
         adminUserRoleMapper.insertBatch(userRoles);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        QueryWrapper<AdminUser> query = new QueryWrapper<>();
-        query.eq("username", username);
-        query.eq("status", "NORMAL");
-        AdminUser adminUser = adminUserMapper.selectOne(query);
-
-        List<String> menuList = adminUserMapper.selectMenuListByUserId(adminUser.getUserId());
-        UserDetails user = User.builder()
-                .username(adminUser.getUsername())
-                .password(adminUser.getPassword())
-                .authorities(menuList.toArray(new String[menuList.size()]))
-                .build();
-        return user;
     }
 
     @Override

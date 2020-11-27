@@ -17,6 +17,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- spring cloud 相关依赖 -->
         <dependency>
@@ -30,10 +35,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-        </dependency>
+
 
         <!-- 公司内部项目依赖 -->
 

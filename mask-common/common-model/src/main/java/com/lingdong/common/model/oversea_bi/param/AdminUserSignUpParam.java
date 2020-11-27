@@ -1,4 +1,4 @@
-package com.lingdong.service.oversea_bi.param;
+package com.lingdong.common.model.oversea_bi.param;
 
 import lombok.Data;
 

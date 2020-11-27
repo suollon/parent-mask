@@ -1,4 +1,4 @@
-package com.lingdong.common.model.global_config;
+package com.lingdong.common.config.global_config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

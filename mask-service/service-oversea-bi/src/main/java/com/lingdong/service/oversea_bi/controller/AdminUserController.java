@@ -1,18 +1,20 @@
 package com.lingdong.service.oversea_bi.controller;
 
 import com.lingdong.common.model.global_exception.Result;
-import com.lingdong.service.oversea_bi.config.AdminUserDto;
-import com.lingdong.service.oversea_bi.config.JwtTokenUtil;
-import com.lingdong.service.oversea_bi.config.RedisKeyUtil;
+import com.lingdong.common.model.oversea_bi.client.AdminUserClient;
+import com.lingdong.common.model.oversea_bi.dto.AdminUserDto;
+import com.lingdong.common.model.oversea_bi.param.AdminUserSignUpParam;
+import com.lingdong.common.model.oversea_bi.param.LoginParam;
+import com.lingdong.common.util.utils.JwtTokenUtil;
+import com.lingdong.common.util.utils.RedisKeyUtil;
 import com.lingdong.service.oversea_bi.entity.AdminUser;
-import com.lingdong.service.oversea_bi.param.AdminUserSignUpParam;
-import com.lingdong.service.oversea_bi.param.LoginParam;
 import com.lingdong.service.oversea_bi.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +28,7 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/admin-user")
-public class AdminUserController {
+public class AdminUserController implements AdminUserClient {
 
     @Autowired
     private AdminUserService adminUserService;
@@ -35,7 +37,13 @@ public class AdminUserController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return adminUserService.loadUserByUsername(username);
+    }
+
     //注册
+    @Override
     @PostMapping("/sign-up")
     public Result signUp(@Valid @RequestBody AdminUserSignUpParam param) {
         adminUserService.signUp(param);
@@ -43,6 +51,7 @@ public class AdminUserController {
     }
 
     //登录
+    @Override
     @PostMapping("/login")
     public Result login(@Valid @RequestBody LoginParam param) {
         AdminUserDto userFromDatabase = this.adminUserService.selectByUsername(param.getUsername());
@@ -60,13 +69,13 @@ public class AdminUserController {
     }
 
     //退出
+    @Override
     @PostMapping("/logout")
     public Result logout() {
         // 删除缓存中的token
 
         return Result.ok();
     }
-
 
     @GetMapping("/selectOne")
     public AdminUser selectOne() {

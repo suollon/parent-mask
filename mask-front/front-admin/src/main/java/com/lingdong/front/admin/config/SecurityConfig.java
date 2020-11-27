@@ -1,6 +1,6 @@
-package com.lingdong.service.oversea_bi.config;
+package com.lingdong.front.admin.config;
 
-import com.lingdong.service.oversea_bi.service.AdminUserService;
+import com.lingdong.common.model.oversea_bi.client.AdminUserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,14 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] SWAGGER_WHITE_LIST = {"/swagger-ui.html", "/swagger-ui/*",
             "/swagger-resources/**", "/v2/api-docs", "/v3/api-docs", "/webjars/**"};
+
     @Autowired
-    private AdminUserService adminUserService;
+    private AdminUserClient adminUserClient;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(adminUserService).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(adminUserClient).passwordEncoder(passwordEncoder);
     }
 
     @Override

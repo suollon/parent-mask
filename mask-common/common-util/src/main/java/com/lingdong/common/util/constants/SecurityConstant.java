@@ -1,4 +1,4 @@
-package com.lingdong.service.oversea_bi.config;
+package com.lingdong.common.util.constants;
 
 /**
  * @description Spring Security相关配置常量

@@ -1,4 +1,4 @@
-package com.lingdong.service.oversea_bi.config;
+package com.lingdong.common.model.oversea_bi.dto;
 
 import lombok.Getter;
 import lombok.Setter;

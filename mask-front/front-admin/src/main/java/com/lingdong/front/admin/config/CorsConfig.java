@@ -1,4 +1,4 @@
-package com.lingdong.service.oversea_bi.config;
+package com.lingdong.front.admin.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;

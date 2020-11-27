@@ -1,13 +1,16 @@
 package com.lingdong.service.oversea_bi.service;
 
-import com.lingdong.service.oversea_bi.param.AdminUserSignUpParam;
-import com.lingdong.service.oversea_bi.config.AdminUserDto;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.lingdong.common.model.oversea_bi.dto.AdminUserDto;
+import com.lingdong.common.model.oversea_bi.param.AdminUserSignUpParam;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 /**
  * 后台-用户信息表(AdminUser)表服务接口
  */
-public interface AdminUserService extends UserDetailsService {
+public interface AdminUserService {
+
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
     void signUp(AdminUserSignUpParam param);
 
