@@ -12,8 +12,7 @@ public interface AdminUserService {
 
     UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 
-    void signUp(AdminUserSignUpParam param);
-
     AdminUserDto selectByUsername(String username);
 
+    void signUp(AdminUserSignUpParam param);
 }
