@@ -2,7 +2,6 @@ package com.lingdong.front.admin.auth;
 
 import com.lingdong.common.util.constants.SecurityConstant;
 import com.lingdong.common.util.utils.RedisKeyUtil;
-import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -41,22 +40,24 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             chain.doFilter(request, response);
             return;
         }
+
         String tokenValue = token.replace(SecurityConstant.TOKEN_PREFIX, "");
         UsernamePasswordAuthenticationToken authentication = null;
-        try {
-            Object tokenObjectFromRedis = redisTemplate.opsForValue().get(RedisKeyUtil.getTokenKey(Long.valueOf(JwtTokenUtil.getUserId(tokenValue))));
-            if (tokenObjectFromRedis == null || !token.equals((String) tokenObjectFromRedis)) {
-                SecurityContextHolder.clearContext();
-                chain.doFilter(request, response);
-                return;
-            }
-            authentication = JwtTokenUtil.getAuthentication(tokenValue);
-        } catch (JwtException e) {
-            logger.error("Invalid jwt : " + e);
+        Object tokenObjectFromRedis = redisTemplate.opsForValue().get(RedisKeyUtil.getTokenKey(Long.valueOf(JwtTokenUtil.getUserId(tokenValue))));
+        if (tokenObjectFromRedis == null || !token.equals((String) tokenObjectFromRedis)) {
+            SecurityContextHolder.clearContext();
+            chain.doFilter(request, response);
+            return;
         }
+        authentication = JwtTokenUtil.getAuthentication(tokenValue);
+        AdminUserHolder.setAdminUser(JwtTokenUtil.getAdminUser(tokenValue));
+
         SecurityContextHolder.getContext().setAuthentication(authentication);
         chain.doFilter(request, response);
+        AdminUserHolder.removeAdminUser();
     }
+
+
 }
 
 

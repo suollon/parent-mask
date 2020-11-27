@@ -1,7 +1,6 @@
 package com.lingdong.common.model.oversea_bi.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +10,9 @@ import java.util.List;
  */
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class AdminUserDto {
     /**
     * 用户ID

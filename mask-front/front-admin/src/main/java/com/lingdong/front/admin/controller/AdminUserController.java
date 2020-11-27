@@ -7,6 +7,7 @@ import com.lingdong.common.model.oversea_bi.param.AdminUserSignUpParam;
 import com.lingdong.common.model.oversea_bi.param.LoginParam;
 import com.lingdong.common.util.utils.RedisKeyUtil;
 import com.lingdong.front.admin.auth.JwtTokenUtil;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
@@ -30,11 +31,13 @@ public class AdminUserController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    @ApiOperation("注册接口")
     @PostMapping("/sign-up")
     public Result signUp(@Valid @RequestBody AdminUserSignUpParam param) {
         return adminUserClient.signUp(param);
     }
 
+    @ApiOperation("登录接口")
     @PostMapping("/login")
     public Result login(@Valid @RequestBody LoginParam param, HttpServletResponse response) {
         AdminUserDto userFromDatabase = adminUserClient.selectByUsername(param.getUsername()).getData();
@@ -50,7 +53,7 @@ public class AdminUserController {
         return Result.ok();
     }
 
-    //退出
+    @ApiOperation("退出接口")
     @PostMapping("/logout")
     // TODO 通过注解注入当前登录的用户;
     public Result logout(Long userId) {

@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 
 @EnableFeignClients(basePackages = "com.lingdong.common.model")
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = {"com.lingdong.front.admin", "com.lingdong.common.model"})
+@SpringBootApplication(scanBasePackages = {"com.lingdong.front.admin", "com.lingdong.common"})
 public class FrontAdminApplication {
 
     @Value("${server.port}")

@@ -1,5 +1,6 @@
 package com.lingdong.front.admin.auth;
 
+import com.lingdong.common.model.oversea_bi.dto.AdminUserDto;
 import com.lingdong.common.util.constants.SecurityConstant;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Header;
@@ -38,7 +39,7 @@ public class JwtTokenUtil {
                 .setIssuedAt(createdDate)
                 .setSubject(username)
                 .setExpiration(expirationDate)
-                .claim(SecurityConstant.ROLE_CLAIMS, String.join(",", menus))
+                .claim(SecurityConstant.MENU_CLAIMS, String.join(",", menus))
                 .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
                 .compact();
         return SecurityConstant.TOKEN_PREFIX + token;
@@ -51,10 +52,22 @@ public class JwtTokenUtil {
 
     public static UsernamePasswordAuthenticationToken getAuthentication(String token) {
         Claims claims = getClaims(token);
-        String role = (String) claims.get(SecurityConstant.ROLE_CLAIMS);
-        List<SimpleGrantedAuthority> authorities = Arrays.stream(role.split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        String menus = (String) claims.get(SecurityConstant.MENU_CLAIMS);
+        List<SimpleGrantedAuthority> authorities = Arrays.stream(menus.split(",")).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
         String username = claims.getSubject();
         return new UsernamePasswordAuthenticationToken(username, token, authorities);
+    }
+
+    public static AdminUserDto getAdminUser(String token) {
+        Claims claims = getClaims(token);
+        String menus = (String) claims.get(SecurityConstant.MENU_CLAIMS);
+        String username = claims.getSubject();
+        Long userId = Long.valueOf(claims.getId());
+        return AdminUserDto.builder()
+                .userId(Long.valueOf(claims.getId()))
+                .username(claims.getSubject())
+                .meunList(Arrays.stream(menus.split(",")).collect(Collectors.toList()))
+                .build();
     }
 
     private static Claims getClaims(String token) {
