@@ -5,7 +5,7 @@
     <conversionRule conversionWord="wEx" converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter" />
 
     <springProperty scope="context" name="APP_DIR" source="spring.application.name"/>
-    <springProperty scope="context" name="LOG_PATH" source="logging.path" defaultValue="/logs"/>
+    <springProperty scope="context" name="LOG_PATH" source="logging.path" defaultValue="./logs"/>
     <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - [%method,%line] - %msg%n"/>
     <property name="LOG_COLOR_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %green(%-5level) - [%method,%line] %cyan(%logger{36}) - %msg%n" />
     <!--<property name="LOG_COLOR_PATTERN" value="%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %highlight(%-5level) [%thread] %green(%logger{36}) - [%method,%line] - %highlight(%msg) %n" />-->
