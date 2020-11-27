@@ -1,4 +1,4 @@
-package com.lingdong.common.util.utils;
+package com.lingdong.front.admin.auth;
 
 import com.lingdong.common.util.constants.SecurityConstant;
 import io.jsonwebtoken.Claims;

@@ -12,9 +12,6 @@ import com.lingdong.service.oversea_bi.entity.AdminUser;
 import com.lingdong.service.oversea_bi.entity.AdminUserRole;
 import com.lingdong.service.oversea_bi.service.AdminUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,9 +20,6 @@ import java.util.stream.Collectors;
 
 /**
  * 后台-用户信息表(AdminUser)表服务实现类
- *
- * @author makejava
- * @since 2020-11-23 15:18:48
  */
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
@@ -36,19 +30,15 @@ public class AdminUserServiceImpl implements AdminUserService {
     private AdminUserRoleMapper adminUserRoleMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public AdminUserDto selectByUsername(String username) {
         QueryWrapper<AdminUser> query = new QueryWrapper<>();
         query.eq("username", username);
         query.eq("status", "NORMAL");
         AdminUser adminUser = adminUserMapper.selectOne(query);
-
         List<String> menuList = adminUserMapper.selectMenuListByUserId(adminUser.getUserId());
-        UserDetails user = User.builder()
-                .username(adminUser.getUsername())
-                .password(adminUser.getPassword())
-                .authorities(menuList.toArray(new String[menuList.size()]))
-                .build();
-        return user;
+        AdminUserDto adminUserDto = BeanCopierUtil.copyForClass(adminUser, AdminUserDto.class);
+        adminUserDto.setMeunList(menuList);
+        return adminUserDto;
     }
 
     @Override
@@ -71,17 +61,5 @@ public class AdminUserServiceImpl implements AdminUserService {
                 .map(roleId -> AdminUserRole.builder().userId(adminUser.getUserId()).roleId(roleId).build())
                 .collect(Collectors.toList());
         adminUserRoleMapper.insertBatch(userRoles);
-    }
-
-    @Override
-    public AdminUserDto selectByUsername(String username) {
-        QueryWrapper<AdminUser> query = new QueryWrapper<>();
-        query.eq("username", username);
-        query.eq("status", "NORMAL");
-        AdminUser adminUser = adminUserMapper.selectOne(query);
-        List<String> menuList = adminUserMapper.selectMenuListByUserId(adminUser.getUserId());
-        AdminUserDto adminUserDto = BeanCopierUtil.copyForClass(adminUser, AdminUserDto.class);
-        adminUserDto.setMeunList(menuList);
-        return adminUserDto;
     }
 }

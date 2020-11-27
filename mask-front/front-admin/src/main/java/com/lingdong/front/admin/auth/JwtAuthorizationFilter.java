@@ -1,7 +1,6 @@
-package com.lingdong.front.admin.config;
+package com.lingdong.front.admin.auth;
 
 import com.lingdong.common.util.constants.SecurityConstant;
-import com.lingdong.common.util.utils.JwtTokenUtil;
 import com.lingdong.common.util.utils.RedisKeyUtil;
 import io.jsonwebtoken.JwtException;
 import lombok.extern.slf4j.Slf4j;
@@ -21,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author shuang.kou
  * @description 过滤器处理所有HTTP请求，并检查是否存在带有正确令牌的Authorization标头。例如，如果令牌未过期或签名密钥正确。
  */
 @Slf4j

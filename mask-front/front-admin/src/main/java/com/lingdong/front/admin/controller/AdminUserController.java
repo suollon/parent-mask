@@ -5,8 +5,8 @@ import com.lingdong.common.model.oversea_bi.client.AdminUserClient;
 import com.lingdong.common.model.oversea_bi.dto.AdminUserDto;
 import com.lingdong.common.model.oversea_bi.param.AdminUserSignUpParam;
 import com.lingdong.common.model.oversea_bi.param.LoginParam;
-import com.lingdong.common.util.utils.JwtTokenUtil;
 import com.lingdong.common.util.utils.RedisKeyUtil;
+import com.lingdong.front.admin.auth.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -35,7 +36,7 @@ public class AdminUserController {
     }
 
     @PostMapping("/login")
-    public Result login(@Valid @RequestBody LoginParam param) {
+    public Result login(@Valid @RequestBody LoginParam param, HttpServletResponse response) {
         AdminUserDto userFromDatabase = adminUserClient.selectByUsername(param.getUsername()).getData();
         if (userFromDatabase == null) {
             throw new RuntimeException("用户不存在");
@@ -45,16 +46,16 @@ public class AdminUserController {
         }
         String token = JwtTokenUtil.createToken(userFromDatabase.getUserId(), userFromDatabase.getUsername(), userFromDatabase.getMeunList(), true);
         redisTemplate.opsForValue().set(RedisKeyUtil.getTokenKey(userFromDatabase.getUserId()), token);
-        HttpHeaders headers = new HttpHeaders();
-        headers.set(HttpHeaders.AUTHORIZATION, token);
+        response.setHeader(HttpHeaders.AUTHORIZATION, token);
         return Result.ok();
     }
 
     //退出
     @PostMapping("/logout")
-    public Result logout() {
+    // TODO 通过注解注入当前登录的用户;
+    public Result logout(Long userId) {
         // 删除缓存中的token
-
+        redisTemplate.delete(RedisKeyUtil.getTokenKey(userId));
         return Result.ok();
     }
 }

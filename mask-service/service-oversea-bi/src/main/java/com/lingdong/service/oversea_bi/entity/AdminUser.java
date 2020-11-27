@@ -5,9 +5,6 @@ import java.io.Serializable;
 
 /**
  * 后台-用户信息表(AdminUser)实体类
- *
- * @author makejava
- * @since 2020-11-23 15:18:46
  */
 public class AdminUser implements Serializable {
     private static final long serialVersionUID = -12958178611280764L;

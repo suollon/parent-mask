@@ -1,6 +1,5 @@
-package com.lingdong.front.admin.config;
+package com.lingdong.front.admin.auth;
 
-import com.lingdong.common.model.oversea_bi.client.AdminUserClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -21,13 +21,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-resources/**", "/v2/api-docs", "/v3/api-docs", "/webjars/**"};
 
     @Autowired
-    private AdminUserClient adminUserClient;
+    private UserDetailsService userDetailsService;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(adminUserClient).passwordEncoder(passwordEncoder);
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()// 禁用 CSRF
                 .authorizeRequests()
                 .antMatchers(SWAGGER_WHITE_LIST).permitAll()// swagger
-                .antMatchers(HttpMethod.POST, "/admin-user/login").permitAll()// 登录接口
+                .antMatchers("/admin-user/login").permitAll()// 登录接口
                 .antMatchers("/**").authenticated()// 指定路径下的资源需要验证了的用户才能访问
                 .antMatchers(HttpMethod.DELETE, "/**").hasRole("ADMIN")
                 .anyRequest().permitAll()// 其他都放行了

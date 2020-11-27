@@ -1,4 +1,4 @@
-package com.lingdong.front.admin.config;
+package com.lingdong.front.admin.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;

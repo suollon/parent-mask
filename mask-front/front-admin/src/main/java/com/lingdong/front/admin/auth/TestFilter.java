@@ -1,4 +1,4 @@
-package com.lingdong.front.admin.config;
+package com.lingdong.front.admin.auth;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lingdong.common.model.oversea_bi.dto.AdminUserDto;

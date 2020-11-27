@@ -55,6 +55,11 @@
         <!-- 公司内部项目依赖 -->
         <dependency>
             <groupId>com.lingdong</groupId>
+            <artifactId>common-config</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lingdong</groupId>
             <artifactId>common-model</artifactId>
             <version>${project.version}</version>
         </dependency>

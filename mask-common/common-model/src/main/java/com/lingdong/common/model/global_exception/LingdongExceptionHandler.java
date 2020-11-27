@@ -1,6 +1,7 @@
 package com.lingdong.common.model.global_exception;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.netflix.client.ClientException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
@@ -64,6 +65,12 @@ public class LingdongExceptionHandler {
     }
 
     /*********************** 其他系统异常 ***********************/
+    @ExceptionHandler(ClientException.class)
+    public Result handleRuntimeException(ClientException e) {
+        log.error("ClientException 异常", e);
+        return Result.error(ErrorEnum.E100500.getCode(), ErrorEnum.E100500.getMessage(), e.getStackTrace()[0]);
+    }
+
     @ExceptionHandler(RuntimeException.class)
     public Result handleRuntimeException(RuntimeException e) {
         log.error("RuntimeException 异常", e);
